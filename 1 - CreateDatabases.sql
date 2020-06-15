@@ -1,0 +1,36 @@
+DROP DATABASE IF EXISTS PvNoneDb;
+DROP DATABASE IF EXISTS PvTornPageDb;
+DROP DATABASE IF EXISTS PvCheckSumDb;
+
+CREATE DATABASE [PvNoneDb]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'PvNoneDb', FILENAME = N'/var/opt/mssql/data/PvNoneDb.mdf' , SIZE = 102400KB , FILEGROWTH = 102400KB )
+ LOG ON 
+( NAME = N'PvNoneDb_log', FILENAME = N'/var/opt/mssql/data/PvNoneDb_log.ldf' , SIZE = 25600KB , FILEGROWTH = 25600KB )
+GO
+
+ALTER DATABASE PvNoneDb
+SET PAGE_VERIFY NONE;
+
+CREATE DATABASE [PvTornPageDb]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'PvTornPageDb', FILENAME = N'/var/opt/mssql/data/PvTornPageDb.mdf' , SIZE = 102400KB , FILEGROWTH = 102400KB )
+ LOG ON 
+( NAME = N'PvTornPageDb_log', FILENAME = N'/var/opt/mssql/data/PvTornPageDb_log.ldf' , SIZE = 25600KB , FILEGROWTH = 25600KB )
+GO
+
+ALTER DATABASE PvTornPageDb
+SET PAGE_VERIFY TORN_PAGE_DETECTION;
+
+CREATE DATABASE [PvCheckSumDb]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'PvCheckSumDb', FILENAME = N'/var/opt/mssql/data/PvCheckSumDb.mdf' , SIZE = 102400KB , FILEGROWTH = 102400KB )
+ LOG ON 
+( NAME = N'PvCheckSumDb_log', FILENAME = N'/var/opt/mssql/data/PvCheckSumDb_log.ldf' , SIZE = 25600KB , FILEGROWTH = 25600KB )
+GO
+
+ALTER DATABASE PvCheckSumDb
+SET PAGE_VERIFY CHECKSUM;

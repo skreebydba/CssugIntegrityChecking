@@ -1,0 +1,8 @@
+USE master;
+
+PRINT 'Checking PvNoneDb';
+DBCC CHECKDB(PvNoneDb) WITH NO_INFOMSGS;
+PRINT 'Checking PvTornPageDb';
+DBCC CHECKDB(PvTornPageDb) WITH NO_INFOMSGS;
+PRINT 'Checking PvCheckSumDb';
+DBCC CHECKDB(PvCheckSumDb) WITH NO_INFOMSGS;
